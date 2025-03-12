@@ -9,7 +9,7 @@ const BookItem = ({ book, handleDelete }) => {
       <td className="border-b border-gray-200 p-3">{book.title}</td>
       <td className="border-b border-gray-200 p-3">{book.author}</td>
       <td className="border-b border-gray-200 p-3">{book.genre}</td>
-      <td className="border-b border-gray-200 p-3">{book.publishedYear}</td>
+      <td className="border-b border-gray-200 p-3">{book.yearPublished}</td>
       <td className="border-b border-gray-200 p-3">
         {book.description || (
           <span className="text-gray-400">No description available</span>

@@ -25,7 +25,8 @@ const BooksList = ({ books, handleDeleteBook }) => {
           book.title.toLowerCase().includes(query.toLowerCase()) ||
           book.author.toLowerCase().includes(query.toLowerCase()) ||
           book.genre.toLowerCase().includes(query.toLowerCase()) ||
-          book.yearPublished.toString().includes(query)
+          book.description.toLowerCase().includes(query.toLowerCase()) ||
+          book.yearPublished.toString().includes(query) 
       );
       setFilteredBooks(filtered);
     }

@@ -108,8 +108,8 @@ const App = () => {
     }
   };
 
-  const handleDeleteBook = (id) => {
-    const response = deleteBook(id);
+  const handleDeleteBook = async (id) => {
+    const response = await deleteBook(id);
     if (response.status === "success") {
       console.log("Deleted book with id: ", id);
       fetchBooks();
