@@ -1,37 +1,25 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import NavBar from "../components/comon/NavBar";
+import { getBookById } from "../integration";
 
-const EditBook = ({ books, handleUpdateBook }) => {
+const EditBook = ({ handleUpdateBook }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [book, setBook] = useState({});
 
   // Find the book using the ID from the URL
-  const bookToEdit = books.find((book) => book.id === parseInt(id));
-
-  const [book, setBook] = useState({
-    title: "",
-    author: "",
-    genre: "",
-    publishedYear: "",
-    coverImage: "",
-    description: "",
-  });
-
   useEffect(() => {
-    if (bookToEdit) {
-      setBook(bookToEdit);
-    }
-  }, [bookToEdit]);
-
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBook((prevBook) => ({
-      ...prevBook,
-      [name]: value,
-    }));
-  };
+    const fetchBook = async () => {
+      const response = await getBookById(id);
+      if (response.status === "success") {
+        setBook(response.data);
+      } else {
+        toast.error(response.message);
+      }
+    };
+    fetchBook();
+  }, []);
 
   // Handle image upload
   const handleImageChange = (e) => {
@@ -56,7 +44,8 @@ const EditBook = ({ books, handleUpdateBook }) => {
       !book.title ||
       !book.author ||
       !book.genre ||
-      !book.publishedYear ||
+      !book.yearPublished ||
+      !book.pages ||
       !book.description
     ) {
       alert("Please fill in all fields.");
@@ -64,9 +53,7 @@ const EditBook = ({ books, handleUpdateBook }) => {
     }
 
     // ✅ Use handleUpdateBook to update the book
-    handleUpdateBook(book.id, book);
-
-    navigate("/books");
+    handleUpdateBook(id, book);
   };
 
   return (
@@ -94,7 +81,9 @@ const EditBook = ({ books, handleUpdateBook }) => {
               type="text"
               name="title"
               value={book.title}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBook((prevBook) => ({ ...prevBook, title: e.target.value }))
+              }
               className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
               required
             />
@@ -109,7 +98,9 @@ const EditBook = ({ books, handleUpdateBook }) => {
               type="text"
               name="author"
               value={book.author}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBook((prevBook) => ({ ...prevBook, author: e.target.value }))
+              }
               className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
               required
             />
@@ -124,7 +115,9 @@ const EditBook = ({ books, handleUpdateBook }) => {
               type="text"
               name="genre"
               value={book.genre}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBook((prevBook) => ({ ...prevBook, genre: e.target.value }))
+              }
               className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
               required
             />
@@ -138,8 +131,28 @@ const EditBook = ({ books, handleUpdateBook }) => {
             <input
               type="number"
               name="publishedYear"
-              value={book.publishedYear}
-              onChange={handleChange}
+              value={book.yearPublished}
+              onChange={(e) =>
+                setBook((prevBook) => ({
+                  ...prevBook,
+                  yearPublished: e.target.value,
+                }))
+              }
+              className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-medium mb-1">
+              Pages:
+            </label>
+            <input
+              type="number"
+              name="pages"
+              value={book.pages}
+              onChange={(e) =>
+                setBook((prevBook) => ({ ...prevBook, pages: e.target.value }))
+              }
               className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
               required
             />
@@ -153,7 +166,12 @@ const EditBook = ({ books, handleUpdateBook }) => {
             <textarea
               name="description"
               value={book.description}
-              onChange={handleChange}
+              onChange={(e) =>
+                setBook((prevBook) => ({
+                  ...prevBook,
+                  description: e.target.value,
+                }))
+              }
               className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-green-400"
               rows="4"
               required
@@ -161,7 +179,7 @@ const EditBook = ({ books, handleUpdateBook }) => {
           </div>
 
           {/* Cover Image Upload */}
-          <div>
+          {/* <div>
             <label className="block text-gray-700 font-medium mb-1">
               Upload Cover Image:
             </label>
@@ -182,7 +200,7 @@ const EditBook = ({ books, handleUpdateBook }) => {
                 className="mt-4 w-full h-48 object-cover rounded-lg"
               />
             )}
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <button

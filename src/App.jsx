@@ -13,17 +13,19 @@ import ViewBook from "./pages/ViewBook";
 import EditBook from "./pages/EditBook";
 import AddBookForm from "./components/book/AddBookForm";
 import LandingPage from "./pages/LandingPage";
-import { getAllBooks } from "./integration";
+import { addBook, deleteBook, getAllBooks, updateBook } from "./integration";
 
 const App = () => {
-  useEffect(() => {
-    const response = getAllBooks();
+  const fetchBooks = async () => {
+    const response = await getAllBooks();
     if (response.status === "success") {
-      setBooks(response.data);
-      toast.success("Books fetched successfully!");
+      setBooks(response.data.map((book) => ({ ...book, id: book._id })));
     } else {
-      toast.error("Failed to fetch books!");
+      toast.error(response.message);
     }
+  };
+  useEffect(() => {
+    fetchBooks();
   }, []);
 
   const [books, setBooks] = useState([]);
@@ -86,27 +88,35 @@ const App = () => {
   //   },
   // ]);
 
-  const handleAddBook = (newBook) => {
-    setBooks((prevBooks) => [
-      ...prevBooks,
-      { ...newBook, id: prevBooks.length + 1 },
-    ]);
-    toast.success("Book added successfully!");
+  const handleAddBook = async (newBook) => {
+    const response = await addBook(newBook);
+    if (response.status === "success") {
+      fetchBooks();
+      toast.success("Book added successfully!");
+    } else {
+      toast.error(response.message);
+    }
   };
 
-  const handleUpdateBook = (id, updatedBook) => {
-    setBooks((prevBooks) =>
-      prevBooks.map((book) =>
-        book.id === id ? { ...book, ...updatedBook } : book
-      )
-    );
-    toast.success("Book updated successfully!");
+  const handleUpdateBook = async (id, updatedBook) => {
+    const response = await updateBook(id, updatedBook);
+    if (response.status === "success") {
+      fetchBooks();
+      toast.success("Book updated successfully!");
+    } else {
+      toast.error(response.message);
+    }
   };
 
   const handleDeleteBook = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-    toast.success("Book deleted successfully!");
+    const response = deleteBook(id);
+    if (response.status === "success") {
+      console.log("Deleted book with id: ", id);
+      fetchBooks();
+      toast.success("Book deleted successfully!");
+    } else {
+      toast.error(response.message);
+    }
   };
 
   return (
@@ -127,20 +137,18 @@ const App = () => {
         />
 
         {/* View Book */}
-        <Route path="/books/view/:id" element={<ViewBook books={books} />} />
+        <Route path="/books/view/:id" element={<ViewBook />} />
 
         {/* Edit Book */}
         <Route
           path="/books/edit/:id"
-          element={
-            <EditBook books={books} handleUpdateBook={handleUpdateBook} />
-          }
+          element={<EditBook handleUpdateBook={handleUpdateBook} />}
         />
 
         {/* Add Book */}
         <Route
           path="/books/add"
-          element={<AddBookForm setBooks={setBooks} />}
+          element={<AddBookForm handleAddBook={handleAddBook} />}
         />
 
         {/* Redirect to books if route is not found */}

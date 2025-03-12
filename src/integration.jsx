@@ -45,7 +45,7 @@ export const updateBook = async (id, book) => {
 export const deleteBook = async (id) => {
   try {
     const response = await axios.delete(`${backend_url}/${id}`);
-    return { status: "success", data: response.data };
+    return { status: "success" };
   } catch (error) {
     console.error(error);
     return { status: "error", message: "Failed to delete book" };

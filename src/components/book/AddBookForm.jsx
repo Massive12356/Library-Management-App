@@ -3,24 +3,17 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../comon/NavBar";
 import { ToastContainer, toast } from "react-toastify";
 
-const AddBookForm = ({ setBooks }) => {
+const AddBookForm = ({ handleAddBook }) => {
   const navigate = useNavigate();
 
   const [book, setBook] = useState({
     title: "",
     author: "",
     genre: "",
-    publishedYear: "",
-    coverImage: null,
+    yearPublished: "",
     description: "",
+    pages: "",
   });
-
-  const handleChange = (e) => {
-    setBook({
-      ...book,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   // Handle Image Upload
   const handleImageChange = (e) => {
@@ -44,22 +37,19 @@ const AddBookForm = ({ setBooks }) => {
       !book.title ||
       !book.author ||
       !book.genre ||
-      !book.publishedYear ||
-      !book.coverImage ||
+      !book.yearPublished ||
+      !book.pages ||
       !book.description // ✅ Ensure description is not empty
     ) {
       toast.error("Please fill in all fields and upload a cover image");
       return;
     }
 
-    // Add new book to the list
-    setBooks((prevBooks) => [
-      ...prevBooks,
-      { ...book, id: prevBooks.length + 1 },
-    ]);
+    // Add the book
+    handleAddBook(book);
 
     // Navigate back to the list
-    navigate("/");
+    // navigate("/");
   };
 
   return (
@@ -86,7 +76,9 @@ const AddBookForm = ({ setBooks }) => {
             type="text"
             name="title"
             value={book.title}
-            onChange={handleChange}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, title: e.target.value }))
+            }
             placeholder="Title"
             className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none"
           />
@@ -95,7 +87,9 @@ const AddBookForm = ({ setBooks }) => {
             type="text"
             name="author"
             value={book.author}
-            onChange={handleChange}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, author: e.target.value }))
+            }
             placeholder="Author"
             className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none"
           />
@@ -104,7 +98,9 @@ const AddBookForm = ({ setBooks }) => {
             type="text"
             name="genre"
             value={book.genre}
-            onChange={handleChange}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, genre: e.target.value }))
+            }
             placeholder="Genre"
             className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none"
           />
@@ -112,23 +108,37 @@ const AddBookForm = ({ setBooks }) => {
           <input
             type="number"
             name="publishedYear"
-            value={book.publishedYear}
-            onChange={handleChange}
+            value={book.yearPublished}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, yearPublished: e.target.value }))
+            }
             placeholder="Published Year"
+            className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none"
+          />
+          <input
+            type="number"
+            name="pages"
+            value={book.pages}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, pages: e.target.value }))
+            }
+            placeholder="Number of pages"
             className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none"
           />
           {/* ✅ Book Description */}
           <textarea
             name="description"
             value={book.description}
-            onChange={handleChange}
+            onChange={(e) =>
+              setBook((prev) => ({ ...prev, description: e.target.value }))
+            }
             placeholder="Book Description"
             rows="4"
             className="border border-gray-300 focus:border-green-500 focus:ring-1 focus:ring-green-500 rounded-lg p-3 w-full outline-none resize-none"
           />
 
           {/* Upload Cover Image */}
-          <div>
+          {/* <div>
             <label className="block text-gray-700 font-medium mb-1">
               Upload Cover Image:
             </label>
@@ -149,7 +159,7 @@ const AddBookForm = ({ setBooks }) => {
                 className="mt-4 w-full h-48 object-cover rounded-lg"
               />
             )}
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <button

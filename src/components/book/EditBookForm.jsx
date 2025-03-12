@@ -20,48 +20,48 @@ const EditBookForm = ({ book, setBooks }) => {
 
   return (
     <>
-    <NavBar />
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        required
-        className="border border-gray-300 p-2 w-full"
+      <NavBar />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+          className="border border-gray-300 p-2 w-full"
         />
-      <input
-        type="text"
-        name="author"
-        value={formData.author}
-        onChange={handleChange}
-        required
-        className="border border-gray-300 p-2 w-full"
+        <input
+          type="text"
+          name="author"
+          value={formData.author}
+          onChange={handleChange}
+          required
+          className="border border-gray-300 p-2 w-full"
         />
-      <input
-        type="text"
-        name="genre"
-        value={formData.genre}
-        onChange={handleChange}
-        required
-        className="border border-gray-300 p-2 w-full"
+        <input
+          type="text"
+          name="genre"
+          value={formData.genre}
+          onChange={handleChange}
+          required
+          className="border border-gray-300 p-2 w-full"
         />
-      <input
-        type="number"
-        name="year"
-        value={formData.year}
-        onChange={handleChange}
-        required
-        className="border border-gray-300 p-2 w-full"
+        <input
+          type="number"
+          name="year"
+          value={formData.year}
+          onChange={handleChange}
+          required
+          className="border border-gray-300 p-2 w-full"
         />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-        Save Changes
-      </button>
-    </form>
-        </>
+          Save Changes
+        </button>
+      </form>
+    </>
   );
 };
 

@@ -1,12 +1,25 @@
 import { useParams, useNavigate } from "react-router-dom";
 import NavBar from "../components/comon/NavBar";
+import { useEffect, useState } from "react";
+import { getBookById } from "../integration";
+import { toast } from "react-toastify";
 
 const ViewBook = ({ books }) => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [book, setBook] = useState(null);
 
-  // Find the book by ID
-  const book = books.find((b) => b.id === parseInt(id));
+  useEffect(() => {
+    const fetchBook = async () => {
+      const response = await getBookById(id);
+      if (response.status === "success") {
+        setBook(response.data);
+      } else {
+        toast.error(response.message);
+      }
+    };
+    fetchBook();
+  }, []);
 
   if (!book) {
     return <div className="text-center text-red-500">Book not found</div>;
@@ -34,10 +47,13 @@ const ViewBook = ({ books }) => {
           <strong>Genre:</strong> {book.genre}
         </p>
         <p className="text-gray-600 text-lg">
-          <strong>Published Year:</strong> {book.publishedYear}
+          <strong>Published Year:</strong> {book.yearPublished}
         </p>
         <p className="text-gray-600 text-lg">
           <strong>Description:</strong> {book.description}
+        </p>
+        <p className="text-gray-600 text-lg">
+          <strong>Pages:</strong> {book.pages}
         </p>
 
         {/* Back Button */}
