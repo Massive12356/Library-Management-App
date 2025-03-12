@@ -5,7 +5,7 @@ import {
   Navigate,
   useNavigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BooksList from "./pages/BooksList";
@@ -13,66 +13,78 @@ import ViewBook from "./pages/ViewBook";
 import EditBook from "./pages/EditBook";
 import AddBookForm from "./components/book/AddBookForm";
 import LandingPage from "./pages/LandingPage";
+import { getAllBooks } from "./integration";
 
 const App = () => {
-  const [books, setBooks] = useState([
-    {
-      id: 1,
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      description: "Sample description",
-      genre: "Fiction",
-      publishedYear: 1925,
-    },
-    {
-      id: 2,
-      title: "To Kill a Mockingbird",
-      author: "Harper Lee",
-      genre: "Fiction",
-      description: "Sample description",
-      publishedYear: 1960,
-    },
-    {
-      id: 3,
-      title: "Church",
-      author: "George Orwell",
-      genre: "Dystopian",
-      description: "Sample description",
-      publishedYear: 1950,
-    },
-    {
-      id: 4,
-      title: "Programming",
-      author: "George Orwell",
-      genre: "Football",
-      description: "Sample description",
-      publishedYear: 1951,
-    },
-    {
-      id: 5,
-      title: "Power",
-      author: "George Orwell",
-      genre: "Football",
-      description: "Sample description",
-      publishedYear: 1952,
-    },
-    {
-      id: 6,
-      title: "Peace",
-      author: "George Orwell",
-      genre: "Dystopian",
-      description: "Sample description",
-      publishedYear: 1953,
-    },
-    {
-      id: 7,
-      title: "War",
-      author: "George Orwell",
-      genre: "Dystopian",
-      description: "Sample description",
-      publishedYear: 1954,
-    },
-  ]);
+  useEffect(() => {
+    const response = getAllBooks();
+    if (response.status === "success") {
+      setBooks(response.data);
+      toast.success("Books fetched successfully!");
+    } else {
+      toast.error("Failed to fetch books!");
+    }
+  }, []);
+
+  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([
+  //   {
+  //     id: 1,
+  //     title: "The Great Gatsby",
+  //     author: "F. Scott Fitzgerald",
+  //     description: "Sample description",
+  //     genre: "Fiction",
+  //     publishedYear: 1925,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "To Kill a Mockingbird",
+  //     author: "Harper Lee",
+  //     genre: "Fiction",
+  //     description: "Sample description",
+  //     publishedYear: 1960,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Church",
+  //     author: "George Orwell",
+  //     genre: "Dystopian",
+  //     description: "Sample description",
+  //     publishedYear: 1950,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Programming",
+  //     author: "George Orwell",
+  //     genre: "Football",
+  //     description: "Sample description",
+  //     publishedYear: 1951,
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Power",
+  //     author: "George Orwell",
+  //     genre: "Football",
+  //     description: "Sample description",
+  //     publishedYear: 1952,
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Peace",
+  //     author: "George Orwell",
+  //     genre: "Dystopian",
+  //     description: "Sample description",
+  //     publishedYear: 1953,
+  //   },
+  //   {
+  //     id: 7,
+  //     title: "War",
+  //     author: "George Orwell",
+  //     genre: "Dystopian",
+  //     description: "Sample description",
+  //     publishedYear: 1954,
+  //   },
+  // ]);
 
   const handleAddBook = (newBook) => {
     setBooks((prevBooks) => [
