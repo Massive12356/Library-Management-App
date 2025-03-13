@@ -30,9 +30,9 @@ const ViewBook = ({ books }) => {
       <NavBar />
       <div className="max-w-xl mx-auto mt-10 bg-white p-6 shadow-lg rounded-lg">
         {/* Book Cover Image */}
-        {book.coverImage && (
+        {book.image && (
           <img
-            src={book.coverImage}
+            src={`https://savefiles.org/${book.image}?shareable_link=625`}
             alt={book.title}
             className="w-full h-64 object-cover rounded-lg mb-4"
           />

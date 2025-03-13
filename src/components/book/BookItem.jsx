@@ -5,14 +5,20 @@ const BookItem = ({ book, handleDelete }) => {
   const navigate = useNavigate();
 
   return (
-    <tr className="hover:bg-gray-100 transition-colors">
-      <td className="border-b border-gray-200 p-3">{book.title}</td>
-      <td className="border-b border-gray-200 p-3">{book.author}</td>
-      <td className="border-b border-gray-200 p-3">{book.genre}</td>
-      <td className="border-b border-gray-200 p-3">{book.yearPublished}</td>
-      <td className="border-b border-gray-200 p-3">
+    <tr className="hover:bg-gray-100 transition-colors text-center">
+      <td className="border-b border-gray-200 p-3 font-medium w-50">{book.title}</td>
+      <td className="border-b border-gray-200 p-3 font-medium">
+        {book.author}
+      </td>
+      <td className="border-b border-gray-200 p-3 font-medium">{book.genre}</td>
+      <td className="border-b border-gray-200 p-3 font-medium">
+        {book.yearPublished}
+      </td>
+      <td className="border-b border-gray-200 p-3 font-medium">
         {book.description || (
-          <span className="text-gray-400">No description available</span>
+          <span className="text-gray-400 font-medium">
+            No description available
+          </span>
         )}
       </td>
       <td className="border-b border-gray-200 p-3">

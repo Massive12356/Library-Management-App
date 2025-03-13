@@ -23,10 +23,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-600">
-      <div className="flex w-full max-w-4xl shadow-lg rounded-lg overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen bg-gray-600 ">
+      <div className="flex flex-col p-5 md:p-0 md:flex-row  w-full max-w-4xl shadow-lg rounded-lg overflow-hidden">
         {/* Left Section */}
-        <div className="w-1/2 bg-gray-800 text-white flex flex-col items-center justify-center p-8">
+        <div className="w-full rounded-lg md:rounded-none md:w-[50%] bg-gray-800 text-white flex flex-col items-center justify-center p-8">
           <div className="flex flex-col items-center">
             <div className="mb-4 p-4">
               <img src={Logo} alt="Logo" className="" />
@@ -40,7 +40,7 @@ const LandingPage = () => {
         </div>
 
         {/* Right Section */}
-        <div className="w-1/2 bg-white p-10 flex flex-col justify-center rounded-l-4xl">
+        <div className="w-full h-[400px] md:w-[50%] bg-white p-10 flex flex-col justify-center rounded-l-4xl">
           <div className="flex flex-col items-center">
             <div className="mb-4">
               <img src={Logo1} alt="Logo" className="rounded-full " />
@@ -73,7 +73,10 @@ const LandingPage = () => {
                 onChange={(e) => setPassword(e.target.value)} // ✅ Handle input state
                 className="w-full px-4 py-2 border rounded-2xl focus:outline-none focus:ring-2 focus:ring-black"
               />
-              <button type="button" className="text-gray-800 text-sm mt-3 hover:text-blue-700 underline cursor-pointer">
+              <button
+                type="button"
+                className="text-gray-800 text-sm mt-3 hover:text-blue-700 underline cursor-pointer"
+              >
                 Forgot Password ?
               </button>
             </div>

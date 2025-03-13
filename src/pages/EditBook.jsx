@@ -179,12 +179,13 @@ const EditBook = ({ handleUpdateBook }) => {
           </div>
 
           {/* Cover Image Upload */}
-          {/* <div>
+          <div>
             <label className="block text-gray-700 font-medium mb-1">
               Upload Cover Image:
             </label>
             <input
               type="file"
+              name="image"
               accept="image/*"
               onChange={handleImageChange}
               className="block w-full text-sm text-gray-500
@@ -193,14 +194,14 @@ const EditBook = ({ handleUpdateBook }) => {
             file:bg-green-100 file:text-green-700
             hover:file:bg-green-200"
             />
-            {book.coverImage && (
+            {book.image && (
               <img
-                src={book.coverImage}
+                src={`https://savefiles.org/${book.image}?shareable_link=625`}
                 alt="Book Cover"
                 className="mt-4 w-full h-48 object-cover rounded-lg"
               />
             )}
-          </div> */}
+          </div>
 
           {/* Submit Button */}
           <button

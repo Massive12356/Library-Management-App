@@ -19,7 +19,7 @@ const App = () => {
   const fetchBooks = async () => {
     const response = await getAllBooks();
     if (response.status === "success") {
-      setBooks(response.data.map((book) => ({ ...book, id: book._id })));
+      setBooks(response.data.map((book) => ({ ...book, id: book.id })));
     } else {
       toast.error(response.message);
     }

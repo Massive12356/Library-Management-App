@@ -58,12 +58,12 @@ const NavBar = () => {
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
   return (
-    <div className="w-full p-5 flex flex-row items-center justify-between mb-6 bg-white">
+    <div className="w-70 md:w-full bg-amber-500 p-5 flex flex-row items-center justify-between mb-6 md:bg-white">
       {/* User section with an icon and user details */}
-      <div className="w-30 flex items-center">
-        <UserIcon className="size-8" /> {/* User icon */}
+      <div className="w-50 flex items-center">
+        <UserIcon className="size-5" /> {/* User icon */}
         <div className="leading-4 ml-2">
-          <p className="text-[15px] font-bold">User Name</p> {/* User's name */}
+          <p className="text-[10px] md:text-[15px] font-bold">Mintah Jr</p> {/* User's name */}
           <p className="text-[13px] font-medium">Admin</p> {/* User's role */}
         </div>
       </div>

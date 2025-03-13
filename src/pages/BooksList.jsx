@@ -67,19 +67,19 @@ const BooksList = ({ books, handleDeleteBook }) => {
           <table className="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-gray-800 text-white">
-                <th className="border-b border-gray-300 p-3 text-left">
+                <th className="border-b border-gray-300 p-3 text-center items-center ">
                   Title
                 </th>
-                <th className="border-b border-gray-300 p-3 text-left">
+                <th className="border-b border-gray-300 p-3 text-center">
                   Author
                 </th>
-                <th className="border-b border-gray-300 p-3 text-left">
+                <th className="border-b border-gray-300 p-3 text-center">
                   Genre
                 </th>
-                <th className="border-b border-gray-300 p-3 text-left">
+                <th className="border-b border-gray-300 p-3 text-center w-40">
                   Published Year
                 </th>
-                <th className="border-b border-gray-300 p-3 text-left">
+                <th className="border-b border-gray-300 p-3 text-center">
                   Description
                 </th>
                 <th className="border-b border-gray-300 p-3 text-center">
