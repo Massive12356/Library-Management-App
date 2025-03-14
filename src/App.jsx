@@ -13,6 +13,7 @@ import ViewBook from "./pages/ViewBook";
 import EditBook from "./pages/EditBook";
 import AddBookForm from "./components/book/AddBookForm";
 import LandingPage from "./pages/LandingPage";
+import Recycle from "./pages/Recycle";
 import { addBook, deleteBook, getAllBooks, updateBook } from "./integration";
 
 const App = () => {
@@ -150,6 +151,7 @@ const App = () => {
           path="/books/add"
           element={<AddBookForm handleAddBook={handleAddBook} />}
         />
+        <Route path="/recycle" element={<Recycle/>} />
 
         {/* Redirect to books if route is not found */}
         <Route path="*" element={<Navigate to="/books" />} />

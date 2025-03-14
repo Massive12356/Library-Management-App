@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Cog8ToothIcon, UserIcon } from "@heroicons/react/24/solid";
+import { Cog8ToothIcon, UserIcon, TrashIcon} from "@heroicons/react/24/solid";
+import { useNavigate} from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const [currentDateTime, setCurrentDateTime] = useState({
     time: "", // For storing the current time (e.g., 12:29 PM)
     date: "", // For storing the current date (e.g., Sep 02, 2023)
   });
+
 
   useEffect(() => {
     // Function to update the time and date
@@ -63,11 +66,21 @@ const NavBar = () => {
       <div className="w-50 flex items-center">
         <UserIcon className="size-5" /> {/* User icon */}
         <div className="leading-4 ml-2">
-          <p className="text-[10px] md:text-[15px] font-bold">Mintah Jr</p> {/* User's name */}
+          <p className="text-[10px] md:text-[15px] font-bold">Mintah Jr</p>{" "}
+          {/* User's name */}
           <p className="text-[13px] font-medium">Admin</p> {/* User's role */}
         </div>
       </div>
 
+      <div
+        className="relative cursor-pointer"
+        onClick={() => navigate("/recycle")}
+      >
+        <span className="absolute w-4 bg-red-600 text-white text-[10px] font-medium text-center rounded-full -top-2 -right-0.5 ">
+          0
+        </span>
+        <TrashIcon className="w-5" />
+      </div>
       {/* Section to display dynamic time and date */}
       <div className="flex items-center">
         <div className="w-25 mr-2 border-r-2 border-zinc-950">
