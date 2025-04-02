@@ -6,17 +6,19 @@ const BookItem = ({ book, handleDelete }) => {
 
   return (
     <tr className="hover:bg-gray-100 transition-colors text-center">
-      <td className="border-b border-gray-200 p-3 font-medium w-50">
+      <td className="border-b border-gray-200 p-3 font-medium w-50 text-[10px] md:text-[17px]">
         {book.title}
       </td>
-      <td className="border-b border-gray-200 p-3 font-medium">
+      <td className="border-b border-gray-200 p-3 font-medium text-[10px] md:text-[17px]">
         {book.author}
       </td>
-      <td className="border-b border-gray-200 p-3 font-medium">{book.genre}</td>
-      <td className="border-b border-gray-200 p-3 font-medium">
+      <td className="border-b border-gray-200 p-3 font-medium text-[10px] md:text-[17px]">
+        {book.genre}
+      </td>
+      <td className="border-b border-gray-200 p-3 font-medium text-[10px] md:text-[17px]">
         {book.yearPublished}
       </td>
-      <td className="border-b border-gray-200 p-3 font-medium">
+      <td className="border-b border-gray-200 p-3 font-medium text-[10px] md:text-[17px]">
         {book.description || (
           <span className="text-gray-400 font-medium">
             No description available

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getBookById } from "../integration";
 import { toast } from "react-toastify";
 
-const ViewBook = ({ books }) => {
+const ViewBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [book, setBook] = useState(null);
@@ -39,7 +39,9 @@ const ViewBook = ({ books }) => {
         )}
 
         {/* Book Details */}
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">{book.title}</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+          {book.title}
+        </h2>
         <p className="text-gray-600 text-lg">
           <strong>Author:</strong> {book.author}
         </p>
