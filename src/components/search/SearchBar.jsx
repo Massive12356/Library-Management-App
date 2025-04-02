@@ -8,7 +8,7 @@ const SearchBar = ({ search, onSearch }) => {
         value={search}
         placeholder="Search by ID, Title, or Author"
         onChange={(e) => onSearch(e.target.value)}
-        className="border border-gray-300 bg-white p-2 w-70 rounded-sm text-[15px] shadow-lg shadow-blue-500/50 outline-none"
+        className="border border-gray-300 bg-white p-2 w-40 md:w-70 rounded-sm text-[10px] md:text-[15px]  shadow-lg shadow-blue-500/50 outline-none"
       />
       {search ? (
         <div
@@ -20,9 +20,9 @@ const SearchBar = ({ search, onSearch }) => {
       ) : (
         <div
           onClick={() => document.querySelector("input").focus()}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center justify-center z-10 bg-gray-200 w-10 h-10 cursor-pointer rounded-full"
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center justify-center z-10 bg-gray-200 w-5 md:w-10 h-5 md:h-10 cursor-pointer rounded-full"
         >
-          <MagnifyingGlassIcon className="w-5 text-gray-500" />
+          <MagnifyingGlassIcon className="w-3 md:w-5 text-gray-500" />
         </div>
       )}
     </div>

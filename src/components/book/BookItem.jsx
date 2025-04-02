@@ -6,7 +6,9 @@ const BookItem = ({ book, handleDelete }) => {
 
   return (
     <tr className="hover:bg-gray-100 transition-colors text-center">
-      <td className="border-b border-gray-200 p-3 font-medium w-50">{book.title}</td>
+      <td className="border-b border-gray-200 p-3 font-medium w-50">
+        {book.title}
+      </td>
       <td className="border-b border-gray-200 p-3 font-medium">
         {book.author}
       </td>
@@ -28,7 +30,8 @@ const BookItem = ({ book, handleDelete }) => {
             onClick={() => navigate(`/books/view/${book.id}`)}
             className="flex items-center cursor-pointer font-medium  bg-blue-500 hover:bg-blue-600 hover:scale-105 text-white px-3 py-2 rounded shadow"
           >
-            <EyeIcon className="size-4 mr-2" /> View
+            <EyeIcon className="size-4 mr-2" />{" "}
+            <span className="hidden md:block">View</span>
           </button>
 
           {/* Edit Button */}
@@ -36,7 +39,8 @@ const BookItem = ({ book, handleDelete }) => {
             onClick={() => navigate(`/books/edit/${book.id}`)}
             className="flex items-center cursor-pointer font-medium bg-green-500 hover:bg-green-600 hover:scale-105 text-white px-3 py-1 rounded shadow"
           >
-            <PencilIcon className="size-4 mr-2" /> Edit
+            <PencilIcon className="size-4 mr-2" />
+            <span className="hidden md:block">Edit</span>
           </button>
 
           {/* Delete Button */}
@@ -44,7 +48,8 @@ const BookItem = ({ book, handleDelete }) => {
             onClick={() => handleDelete(book.id)}
             className="flex items-center cursor-pointer font-medium bg-red-500 hover:bg-red-600 hover:scale-105 text-white px-3 py-1 rounded shadow"
           >
-            <TrashIcon className="size-4 mr-2" /> Delete
+            <TrashIcon className="size-4 mr-2" />{" "}
+            <span className="hidden md:block">Delete</span>
           </button>
         </div>
       </td>

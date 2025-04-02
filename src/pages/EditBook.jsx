@@ -65,7 +65,7 @@ const EditBook = ({ handleUpdateBook }) => {
           {/* Back Button */}
           <button
             onClick={() => navigate("/books")}
-            className="mb-4 text-green-600 hover:text-green-800 font-medium transition duration-300 cursor-pointer"
+            className="mb-4 text-green-600 hover:text-green-800 font-medium transition duration-300 cursor-pointer md:text-[16px] text-[10px]"
           >
             ← Back to Home
           </button>

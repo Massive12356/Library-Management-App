@@ -24,12 +24,12 @@ const AddBookForm = ({ handleAddBook }) => {
         <div className="flex items-center justify-between">
           <button
             onClick={() => navigate("/books")}
-            className="mb-4 text-green-600 hover:text-green-800 font-medium transition duration-300 cursor-pointer"
+            className="mb-4 text-green-600 hover:text-green-800 font-medium transition duration-300 cursor-pointer md:text-[16px] text-[10px]"
           >
             ← Back to Home
           </button>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+          <h2 className="md:text-2xl text-[10px] font-semibold text-gray-800 mb-6">
             Add a New Book
           </h2>
         </div>

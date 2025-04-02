@@ -37,14 +37,18 @@ const BooksList = ({ books, handleDeleteBook }) => {
       <NavBar />
       <div>
         <div className="w-full flex flex-row items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold text-gray-800">♻️ Book Recycle</h1>
+          <h1 className="text-[15px] md:text-3xl font-bold text-gray-800">
+            ♻️ Book Recycle
+          </h1>
 
-            <button onClick={() => navigate("/books")}> <ArrowTurnUpLeftIcon className="w-6 h-6 text-gray-900 cursor-pointer" /> </button>
+          <button onClick={() => navigate("/books")}>
+            {" "}
+            <ArrowTurnUpLeftIcon className="w-4 h-4 md:w-6  md:h-6 text-gray-900 cursor-pointer" />{" "}
+          </button>
           {/* count the total book */}
           <div className="flex flex-row-reverse items-center justify-center">
             {/* Search Bar */}
             <SearchBar onSearch={handleSearch} />
-
 
             {/* Add Book Button */}
             {/* <div className="ml-4 mr-5">
@@ -63,29 +67,27 @@ const BooksList = ({ books, handleDeleteBook }) => {
           <table className="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-gray-800 text-white">
-                <th className="border-b border-gray-300 p-3 text-center items-center ">
+                <th className="border-b border-gray-300 p-3 text-center items-center  text-[10px] md:text-[16px] ">
                   Title
                 </th>
-                <th className="border-b border-gray-300 p-3 text-center">
+                <th className="border-b border-gray-300 p-3 text-center text-[10px] md:text-[16px]">
                   Author
                 </th>
-                <th className="border-b border-gray-300 p-3 text-center">
+                <th className="border-b border-gray-300 p-3 text-center text-[10px] md:text-[16px]">
                   Genre
                 </th>
-                <th className="border-b border-gray-300 p-3 text-center w-40">
+                <th className="border-b border-gray-300 p-3 text-center w-40 text-[10px] md:text-[16px]">
                   Published Year
                 </th>
-                <th className="border-b border-gray-300 p-3 text-center">
+                <th className="border-b border-gray-300 p-3 text-center text-[10px] md:text-[16px]">
                   Description
                 </th>
-                <th className="border-b border-gray-300 p-3 text-center">
+                <th className="border-b border-gray-300 p-3 text-center text-[10px] md:text-[16px]">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody>
-              
-            </tbody>
+            <tbody></tbody>
           </table>
         </div>
       </div>

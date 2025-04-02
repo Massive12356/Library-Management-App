@@ -61,38 +61,43 @@ const NavBar = () => {
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
   return (
-    <div className="w-70 md:w-full bg-amber-500 p-5 flex flex-row items-center justify-between mb-6 md:bg-white">
+    <div className="w-90 md:w-full  p-5 flex flex-row items-center justify-between mb-6 md:bg-white">
       {/* User section with an icon and user details */}
       <div className="w-50 flex items-center">
         <UserIcon className="size-5" /> {/* User icon */}
         <div className="leading-4 ml-2">
           <p className="text-[10px] md:text-[15px] font-bold">Mintah Jr</p>{" "}
           {/* User's name */}
-          <p className="text-[13px] font-medium">Admin</p> {/* User's role */}
+          <p className="text-[10px] md:text-[13px] font-medium">Admin</p>{" "}
+          {/* User's role */}
         </div>
       </div>
 
       <div
-        className="relative cursor-pointer"
+        className="relative cursor-pointer mr-6 md:mr-0"
         onClick={() => navigate("/recycle")}
       >
-        <span className="absolute w-4 bg-red-600 text-white text-[10px] font-medium text-center rounded-full -top-2 -right-0.5 ">
+        <span className="absolute w-3 md:w-4 bg-red-600 text-white text-[10px] font-medium text-center rounded-full -top-2 -right-0.5">
           0
         </span>
-        <TrashIcon className="w-5" />
+        <TrashIcon className="w-4 md:w-5" />
       </div>
       {/* Section to display dynamic time and date */}
       <div className="flex items-center">
-        <div className="w-25 mr-2 border-r-2 border-zinc-950">
+        <div className="w-25 mr-2 border-r-1 md:border-r-2 border-zinc-950">
           {/* Display dynamic time and date */}
-          <p className="text-[15px] font-bold">{currentDateTime.time}</p>{" "}
+          <p className="text-[10px] md:text-[15px] font-bold">
+            {currentDateTime.time}
+          </p>{" "}
           {/* Time (e.g., 12:29 PM) */}
-          <p className="text-[13px] font-medium">{currentDateTime.date}</p>{" "}
+          <p className="text-[10px] md:text-[13px] font-medium">
+            {currentDateTime.date}
+          </p>{" "}
           {/* Date (e.g., September 02, 2023) */}
         </div>
 
         {/* Settings icon */}
-        <Cog8ToothIcon className="size-8" />
+        <Cog8ToothIcon className="size-5 md:size-8" />
       </div>
     </div>
   );
