@@ -16,78 +16,33 @@ import LandingPage from "./pages/LandingPage";
 import Recycle from "./pages/Recycle";
 import { addBook, deleteBook, getAllBooks, updateBook } from "./integration";
 
+
 const App = () => {
-  const fetchBooks = async () => {
-    const response = await getAllBooks();
-    if (response.status === "success") {
-      setBooks(response.data.map((book) => ({ ...book, id: book.id })));
-    } else {
-      toast.error(response.message);
-    }
-  };
+  const [loading , setLoading] = useState(false)
+  const [books, setBooks] = useState([]);// state to hold books 
+ const fetchBooks = async () => {
+   setLoading(true); // Start loading before the fetch
+   try {
+     const response = await getAllBooks();
+
+     if (response.status === "success") {
+       setBooks(response.data.map((book) => ({ ...book, id: book.id })));
+     } else {
+       toast.error(response.message || "Failed to fetch books.");
+     }
+   } catch (error) {
+     console.error("Error fetching books:", error);
+     toast.error("An unexpected error occurred while fetching books.");
+   } finally {
+     setLoading(false); // Stop loading in all cases
+   }
+ };
+
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  const [books, setBooks] = useState([]);
-  // const [books, setBooks] = useState([
-  //   {
-  //     id: 1,
-  //     title: "The Great Gatsby",
-  //     author: "F. Scott Fitzgerald",
-  //     description: "Sample description",
-  //     genre: "Fiction",
-  //     publishedYear: 1925,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "To Kill a Mockingbird",
-  //     author: "Harper Lee",
-  //     genre: "Fiction",
-  //     description: "Sample description",
-  //     publishedYear: 1960,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Church",
-  //     author: "George Orwell",
-  //     genre: "Dystopian",
-  //     description: "Sample description",
-  //     publishedYear: 1950,
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Programming",
-  //     author: "George Orwell",
-  //     genre: "Football",
-  //     description: "Sample description",
-  //     publishedYear: 1951,
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Power",
-  //     author: "George Orwell",
-  //     genre: "Football",
-  //     description: "Sample description",
-  //     publishedYear: 1952,
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Peace",
-  //     author: "George Orwell",
-  //     genre: "Dystopian",
-  //     description: "Sample description",
-  //     publishedYear: 1953,
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "War",
-  //     author: "George Orwell",
-  //     genre: "Dystopian",
-  //     description: "Sample description",
-  //     publishedYear: 1954,
-  //   },
-  // ]);
+
 
   const handleAddBook = async (newBook) => {
     const response = await addBook(newBook);
@@ -133,7 +88,7 @@ const App = () => {
         <Route
           path="/books"
           element={
-            <BooksList books={books} handleDeleteBook={handleDeleteBook} />
+            <BooksList books={books} loading= {loading} handleDeleteBook={handleDeleteBook} />
           }
         />
 

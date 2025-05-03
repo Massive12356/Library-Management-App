@@ -6,9 +6,10 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import NavBar from "../components/comon/NavBar";
 import TotalBooks from "../components/comon/TotalBooks";
 
-const BooksList = ({ books, handleDeleteBook }) => {
+const BooksList = ({ books, handleDeleteBook, loading }) => {
   const navigate = useNavigate();
   const [filteredBooks, setFilteredBooks] = useState(books);
+
 
   // Sync filteredBooks with books state
   useEffect(() => {
@@ -90,14 +91,22 @@ const BooksList = ({ books, handleDeleteBook }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredBooks.map((book) => (
-                <BookItem
-                  key={book.id}
-                  book={book}
-                  handleDelete={() => handleDelete(book.id)}
-                />
-              ))}
-            </tbody>
+  {loading ? (
+    <tr>
+      <td colSpan="100%" className="text-2xl text-blue-700 font-medium text-center">
+        Loading Books .....
+      </td>
+    </tr>
+  ) : (
+    filteredBooks.map((book) => (
+      <BookItem
+        key={book.id}
+        book={book}
+        handleDelete={() => handleDelete(book.id)}
+      />
+    ))
+  )}
+</tbody>
           </table>
         </div>
       </div>
@@ -106,3 +115,4 @@ const BooksList = ({ books, handleDeleteBook }) => {
 };
 
 export default BooksList;
+
